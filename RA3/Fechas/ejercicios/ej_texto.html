@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoja 03 Ejercicio Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #textoContenido {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 80px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .seccion {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Ejercicio de Manipulación de Texto (Hoja 03)</h2>
+
+    <!-- Contenedor del texto original -->
+    <div id="textoContenido">
+        JavaScript es un lenguaje de programación muy popular. JavaScript permite crear contenido dinámico en páginas web.
+    </div>
+
+    <!-- Apartado a: Buscar palabra -->
+    <div class="seccion">
+        <h3>a. Buscar Palabra</h3>
+        <label for="buscarInput">Palabra a buscar:</label>
+        <input type="text" id="buscarInput" placeholder="Escribe una palabra">
+        <button onclick="buscarPalabra()">Buscar</button>
+        <button onclick="resaltarEnNegrita()">Reemplazar en Negrita</button>
+        <p id="resultadoBuscar"></p>
+    </div>
+
+    <!-- Apartado b: Reemplazar palabra -->
+    <div class="seccion">
+        <h3>b. Reemplazar Palabra</h3>
+        <label for="origenInput">Palabra a reemplazar:</label>
+        <input type="text" id="origenInput" placeholder="Palabra original">
+        <label for="destinoInput">Por:</label>
+        <input type="text" id="destinoInput" placeholder="Palabra nueva">
+        <button onclick="reemplazarPalabra()">Reemplazar</button>
+    </div>
+
+    <!-- Apartado c: Cambiar mayúsculas/minúsculas -->
+    <div class="seccion">
+        <h3>c. Formato de Texto</h3>
+        <button onclick="cambiarFormato('minusculas')">Minúsculas</button>
+        <button onclick="cambiarFormato('mayusculas')">Mayúsculas</button>
+        <button onclick="cambiarFormato('original')">Restablecer Original</button>
+    </div>
+
+    <script>
+        // Guardamos una copia del texto original para poder restablecerlo
+        const textoOriginal = document.getElementById('textoContenido').innerText;
+
+        // -------------------------------------------------------------
+        // APARTADO A: Buscar una palabra
+        // -------------------------------------------------------------
+        function buscarPalabra() {
+            let elementoTexto = document.getElementById('textoContenido');
+            let texto = elementoTexto.innerText;
+            
+            // Trim quita los espacios por delante y por detrás
+            let palabra = document.getElementById('buscarInput').value.trim(); 
+            let resultado = document.getElementById('resultadoBuscar');
+
+            if (palabra === "") {
+                resultado.innerText = "Por favor, introduce una palabra para buscar.";
+                return;
+            }
+
+            // i. Verificar si se encuentra
+            let primeraPosicion = texto.indexOf(palabra);
+
+            if (primeraPosicion === -1) {
+                // No se encuentra
+                resultado.innerText = `La palabra "${palabra}" no se encuentra en el texto.`;
+            } else {
+                // iii. Contar cuántas veces aparece usando una expresión regular
+                let regex = new RegExp(palabra, 'g');
+                let coincidencias = texto.match(regex);
+                let cantidad = coincidencias ? coincidencias.length : 0;
+
+                // ii. y iii. Mostrar mensaje con primera posición y total de apariciones
+                resultado.innerText = `¡Encontrada! La primera aparición está en la posición ${primeraPosicion}. Aparece un total de ${cantidad} vez/veces.`;
+            }
+        }
+
+        // iv. Cambiar cada vez que se encuentre por la misma palabra en negrita <b>
+        function resaltarEnNegrita() {
+            let elementoTexto = document.getElementById('textoContenido');
+            let texto = elementoTexto.innerText;
+            let palabra = document.getElementById('buscarInput').value.trim();
+
+            if (palabra === "") return;
+
+            // Reemplazo global (usando RegExp) para sustituir por <b>palabra</b>
+            let regex = new RegExp(palabra, 'g');
+            let nuevoTextoHTML = texto.replace(regex, `<b>${palabra}</b>`);
+
+            // Asignamos innerHTML para que procese la etiqueta <b>
+            elementoTexto.innerHTML = nuevoTextoHTML;
+        }
+
+        // -------------------------------------------------------------
+        // APARTADO B: Reemplazar una palabra por otra
+        // -------------------------------------------------------------
+        function reemplazarPalabra() {
+            let elementoTexto = document.getElementById('textoContenido');
+            let texto = elementoTexto.innerText;
+
+            // Quitar espacios en blanco al inicio y al final
+            let palabraOrigen = document.getElementById('origenInput').value.trim();
+            let palabraDestino = document.getElementById('destinoInput').value.trim();
+
+            if (palabraOrigen === "") {
+                alert("Introduce la palabra que deseas reemplazar.");
+                return;
+            }
+
+            // Reemplaza todas las ocurrencias de la palabra origen por la de destino
+            let regex = new RegExp(palabraOrigen, 'g');
+            let textoReemplazado = texto.replace(regex, palabraDestino);
+
+            elementoTexto.innerText = textoReemplazado;
+        }
+
+        // -------------------------------------------------------------
+        // APARTADO C: Minúsculas, mayúsculas o dejar como estaba
+        // -------------------------------------------------------------
+        function cambiarFormato(opcion) {
+            let elementoTexto = document.getElementById('textoContenido');
+
+            if (opcion === 'minusculas') {
+                elementoTexto.innerText = elementoTexto.innerText.toLowerCase();
+            } else if (opcion === 'mayusculas') {
+                elementoTexto.innerText = elementoTexto.innerText.toUpperCase();
+            } else if (opcion === 'original') {
+                elementoTexto.innerText = textoOriginal;
+            }
+        }
+    </script>
+</body>
+</html>

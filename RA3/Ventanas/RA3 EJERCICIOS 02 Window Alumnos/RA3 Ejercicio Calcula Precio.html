@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Posada San Antonio</title>
+    <link rel="stylesheet" href="main.css">
+    <script>
+        const individual = 90;
+        const doble = 120;
+        function calcular() {
+
+        }
+        function pedir() {
+
+        }  
+    </script>
+</head>
+
+<body>
+    Actualmente nuestros precios por habitación y noche son (Iva incluido):
+    <ul>
+        <li>Habitación individual 90€ <br>
+            <span id="id50">Seleccione cuantas
+                <select id="sel1">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </span>
+        </li>
+        <li>Habitación doble 120€ <br>
+            <span id="id70">Seleccione cuantas
+                <select id="sel2">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </span>
+        </li>
+    </ul>
+    <input type="button" value="CALCULAR PRECIO" onclick="calcular()"> <br><br>
+    <br>
+    Si nos deja un teléfono nosotros le llamamos
+    <input type="text" id="telefono">
+    <input type="button" id="idpet" value="Más información" onclick="pedir()">
+    <script>
+        let mia;
+        function calcular() {
+            const campo1 = document.getElementById("#sel1");
+            const campo2 = document.getElementById("#sel2");
+            const h1 = 90;
+            const h2 = 120;
+
+            let sel1 = parseInt(campo1.value);
+            let sel2 = parseInt(campo2.value);
+            if (sel1 == 0 && sel2 == 0) {
+                alert("debe seleccionar al menos una habitacion");
+            }
+            else {
+                let totalIndiv = sel1 * h1;
+                let totalDoble = sel2 * h2;
+                let precioTotal = totalIndiv + totalDoble;
+
+                mia = window.open('', 'calcular', 'width=300,height=300,top=0,left=0');
+                mia.document.write(`<p>El precio por noche por las habitaciones seleccionadas son: </p> 
+                <p>${sel1} habitación(es) individual(es) --> ${totalIndiv}€</p>
+                <p>${sel2} habitación(es) doble(s) --> ${totalDoble}€</p>
+                <hr>
+                <p><strong>Total por noche: ${precioTotal}€</strong></p>
+                <input type="button" id="idcerrar" value="Cerrar" onclick="window.close()">	 
+
+                `);
+            }
+
+        }
+        function pedir() {
+            let tel = document.getElementById("telefono").value;
+            if (tel.lenght == 9 && !tel.isNaN) {
+            confirmar();
+                
+
+            } else {
+                alert("Por favor, introduzca un número de teléfono valido.");
+            }
+        }
+        function confirmar() {
+
+            var a = confirm('¿Confirma que quiere que contactemos con usted?');
+            if (a) {
+                mia = window.open('', 'confirmacion', 'width=300,height=300,top=0,left=0');
+                mia.document.write(`<p>Nos pondremos en contacto con usted en breve</p>`);
+                interval(mia);
+            } else
+
+                nueva1 = window.open("www.acierto.com", "_blank", 'width=300,height=200,top=300,left=500');
+            nueva2 = window.open("www.santalucia.es", "_blank", 'width=300,height=200,top=300,left=500');
+
+        }
+
+        function interval(mia) {
+            intervalo = setInterval(function () {
+                clearInterval(intervalo);
+            }, 5000);
+
+        }
+    </script>
+</body>
+
+</html>

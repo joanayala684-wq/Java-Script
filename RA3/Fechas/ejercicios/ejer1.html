@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PROBANDO JAVASCRIPT EJEMPLO 1</title>
+<script type="text/JavaScript">
+  // Pedir día y mes al usuario
+  let dia = prompt("Día de tu cumpleaños:");
+  let mes = prompt("Mes (1-12):");
+
+  // Se resta 1 al mes porque en JS Enero es 0 y Diciembre es 11
+  let fecha = new Date(2025, mes - 1, dia);
+
+  let dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+  alert("Cae en: " + dias[fecha.getDay()]);
+</script>
+</head>
+<body>
+  PROBANDO JAVASCRIPT EJEMPLO 1
+</body>
+</html>

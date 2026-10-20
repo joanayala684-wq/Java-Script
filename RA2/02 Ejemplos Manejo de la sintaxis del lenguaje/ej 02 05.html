@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+let a,b;
+a=prompt('Introduce un primer número');
+b=prompt('Introduce un segundo número');
+
+if (a<b)  
+alert (b+' es mayor que '+a); 
+else
+	if (a==b)  
+		alert ('son iguales'); 
+	else
+		alert (b+' es menor que '+a);
+		
+switch (a)
+{
+	case 1:
+		alert ('a vale 1');
+		break;
+	case 2:
+		alert ('a vale 2');
+		break;
+	case 5:
+		alert ('a vale 5');
+		break;
+	default:
+		alert ('a no es ninguno de los números 1, 2 o 5');
+}
+ alert (typeof a);
+ 
+a=prompt ("introduce una nota entre 0 y 10");
+
+ b=a>=5?'aprobado':'suspenso';
+ alert (b);
+</script>
+</head>
+<body>
+PROBANDO JAVASCRIPT
+</body>
+</html>

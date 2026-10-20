@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> PROBANDO JAVASCRIPT EJEMPLO 1</title>
+<script type="text/JavaScript">
+//Pedir al usuario que teclee su nombre y mostrarle cuantos segundos ha tardado en
+//escribirlo.
+function medirTiempoNombre() {
+let ahora = new Date();
+let nombre = promt("introduce tu nombre");
+if (nombre.trim() == "" || nombre == null){
+    alert("debes introducir un nombre valido")
+}
+let despues = new Date();
+let diferencia = despues.getTime() - inicio.getTime();
+let segundos = diferencia / 1000;
+alert("Hola " + nombre + ", has tardado " + segundos.toFixed(2) + " segundos en escribir tu nombre.");
+}
+medirTiempoNombre();
+</script>
+</head>
+<body>
+PROBANDO JAVASCRIPT EJEMPLO 1
+</body>
+</html>

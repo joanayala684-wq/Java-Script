@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+
+        let miCookie = document.cookie;
+        let busca = c_name + "=";
+        let esta = miCookie.indexOf(busca);
+        if (esta != -1) {
+            ini = miCookie.indexOf("=", esta) + 1;
+            fin = miCookie.indexOf(";", esta);
+            if (fin != -1)
+                valor = miCookie.substr(ini, fin - ini);
+            else
+                valor = miCookie.substr(ini);
+            return valor;
+        }
+        else{
+            return null;
+    }
+        function cacular() {
+            let precioTotal = 0;
+            let precio = 0;
+            
+        const campo1 = document.getElementById("#idtamaño");
+            tamaño = campo1.value;
+            if (tamaño == "Pequeña") {
+                precio = 2;
+            }
+            else if (tamaño == "Mediana") {
+                precio = 3;
+            }
+            else if (tamaño == "Grande") {
+                precio = 4;
+            }
+            else if (tamaño == "Gigante") {
+                precio = 5;
+            }
+            else {
+                alert("debes selecionar un tamaño");
+                campo1.focus();
+                return;//ya que al haber un error detenemos la ejecucion
+            }
+            if (document.getElementById("idpatatas").checked)
+                precioTotal = precio + 1;
+            if (document.getElementById("idrefresco").checked)
+                precioTotal = precio + 1.5;
+            const cantidad = Calcantidad();
+           if (cantidad === 0){
+            return;
+           }
+           precioTotal=precioTotal *cantidad;
+           document.getElementById("idtotal").value = precioTotal.toFixed(2) + "€";
+           document.getElementById("premio").style.display = "block";
+        }
+        function Calcantidad() {
+            // Utilizando getElementsByName
+            var elementos = document.getElementsByName("cuantas");
+            for (i = 0; i < elementos.length; i++)
+                if (elementos[i].checked) {
+                    document.getElementById("div1").innerHTML =
+                        "<br>Nivel <br>" + elementos[i].value;
+                    break;
+                }
+            if (i == elementos.length)
+                alert("No ha seleccionado nada");
+                return 0;
+
+        }
+        function verpremio(){
+            const codigoPostal = document.getElementById("idcodigo").value.trim();
+            const inputTotal = document.getElementById("idtotal");
+
+            if(codigoPostal === "28001" || codigoPostal === "28002"){
+                let precioActual = parseInt(InputTotal.value);
+
+                if (!isNaN(precioActual)){
+                    const precioDescuento = precioActual/2;
+                     alert("su pedidio queda a mitad de precio");
+                     inputTotal.value = precioDescuento.toFixed(2) + "€";
+                     document.bgColor = "#90EE90";
+                }
+            }
+            document.getElementById("premio").style.display = "none";
+        }
+    </script>
+    <title> Pedidos HAMBURGUESAS PEPE'S </title>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 2em 2em 4em;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Impact, Charcoal, sans-serif;
+            color: #222;
+
+        }
+    </style>
+
+<body bgcolor="#D8BFD8">
+    <div align="center">
+        <h1> HAMBURGUESAS PEPE'S </h1>
+        <img src="hamburguesa.jpg" width=300 height=210>
+        <form name="miformulario">
+            <br><br>
+            Elige un tamaño
+            <select id="idtamaño">
+                <option value=" "> Selecciona </option>
+                <option value=" "> Pequeña </option>
+                <option value=" "> Mediana </option>
+                <option value=" "> Grande </option>
+                <option value=" "> Gigante!! </option>
+            </select>
+            <p>
+            <p> Combínala con Patatas o Refresco </p>
+            <input type="checkbox" id="idpatatas"> Patatas
+            <input type="checkbox" id="idrefresco"> Refresco
+            <br><br>
+            ¿Cuántas quieres?
+            <br><br>
+
+            <input type="radio" name="cuantas" value="1"> 1 <input type="radio" name="cuantas" value="2"> 2 <input
+                type="radio" name="cuantas" value="3"> 3 <input type="radio" name="cuantas" value="4"> 4 <input
+                type="radio" name="cuantas" value="5"> 5
+            <br><br>
+            <input type="button" value="CALCULAR PRECIO" onclick="calcular()">
+            <br><br>
+            PRECIO TOTAL
+            <input type="text" id="idtotal" size="10">
+            <br><br>
+            <div id="premio" style="display:none">
+                Introduce tu código postal, puedes obtener descuentos!!
+                <input type="text" id="idcodigo" size="10" onchange="verpremio()">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

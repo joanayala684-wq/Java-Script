@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function bien(){
+document.getElementById("demo").innerHTML=rellenar();
+}
+function mal(){
+document.getElementById("demo").innerHTML=rellenar;
+}
+function rellenar(){
+return ("LO SIGUIENTE: EJERCICIOS");
+}
+</script>
+</head>
+<body>
+<h1>PROBANDO FUNCIONES</h1>
+<br>
+<input type="button" value="Llamo a rellenar" onclick="bien()">
+<input type="button" value="Llamo mal a rellenar" onclick="mal()">
+<br>
+<p id="demo"> </p>
+</body>
+</html>

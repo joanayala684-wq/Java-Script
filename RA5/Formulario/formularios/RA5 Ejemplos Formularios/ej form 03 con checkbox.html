@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function contar1()
+{
+let cuantos=0;
+if (document.getElementById("leng1").checked)
+   cuantos++;
+if (document.getElementById("leng2").checked)
+   cuantos++;
+if (document.getElementById("leng3").checked)
+   cuantos++;
+if (document.getElementById("leng4").checked)
+   cuantos++;
+alert("Sabes "+cuantos+" lenguajes");
+}
+function contar2()
+{
+let cuantos=0;
+let lenguajes = document.getElementsByName("leng");
+for (i=0;i<lenguajes.length;i++){
+   if (lenguajes[i].checked)
+      cuantos++;
+}
+alert("Sabes "+cuantos+" lenguajes");
+}
+function calcular()
+{
+let cuanto=0;
+const productos=document.getElementsByName("producto");
+for (i=0;i<productos.length;i++){
+	if (productos[i].checked)
+		cuanto+=Number(productos[i].value);
+	}
+alert("Te va a costar "+cuanto+"€");
+}
+</script>
+</head>
+<body>
+<form name="miformulario">
+Indica cuantos lenguajes conoces
+<br><br>
+JavaScript<input type="checkbox" name="leng" id="leng1"> <br><br>
+JSP<input type="checkbox" name="leng" id="leng2"> <br><br>
+PHP<input type="checkbox" name="leng" id="leng3"> <br><br>
+Java<input type="checkbox" name="leng" id="leng4"> <br><br>
+<br>
+<input type="button" value="CONTABILIZAR" onclick="contar1()">
+<input type="button" value="Otro CONTABILIZAR" onclick="contar2()">
+</form>
+<br><br><br>
+<form name="miscompras">
+   Clica los productos que quieres comprar
+   <br><br>
+   Uno 100€<input type="checkbox" name="producto" value="100"> <br><br>
+   Dos 50€<input type="checkbox" name="producto" value="50"> <br><br>
+   Tres 40€<input type="checkbox" name="producto" value="40" > <br><br>
+   Cuatro 100€<input type="checkbox" name="producto" value="100" > <br><br>
+   <br>
+   <input type="button" value="CALCULAR PRECIO" id='bott' onclick="calcular()">
+   </form>
+</body>
+</html>

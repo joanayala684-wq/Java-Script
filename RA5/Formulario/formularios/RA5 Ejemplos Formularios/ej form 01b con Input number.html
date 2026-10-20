@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+
+function calcular(){
+
+const campo1=document.getElementById("id1");
+const campo2=document.getElementById("id2");
+
+if (campo1.value.length == 0){
+	alert ("campo vacio");
+	campo1.focus();
+	return;
+}
+
+if (campo2.value.length == 0){
+	alert ("campo vacio");
+	campo2.focus();
+	return;
+}
+alert ("Suma sin hacer Number "+(campo1.value + campo2.value));
+let suma = Number(campo1.value)+Number(campo2.value);
+alert ("Hay que seguir haciendo Number ");
+document.getElementById("idres").value = suma;
+
+ }
+ 
+ </script>
+</head>
+<body>
+<form name="form_suma">
+Introduce dos números
+<br>
+<p>Número 1 <input type="number"  id="id1" > 
+   Número 2 <input type="number"  id="id2" ></p>
+<p>Resultado <input type="number"  id="idres"  readonly="readonly"></p>
+<input type="button" value="SUMAR validando " onclick="calcular()">
+<input type="reset" value="BORRAR"> 
+</form>
+</body></html>

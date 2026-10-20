@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function calcular1(){
+  let suma = Number(document.form_suma.n1.value)+Number(document.form_suma.n2.value);
+  document.form_suma.res.value=suma;
+ }
+ function calcular2(){
+   let suma = Number(document.getElementById("id1").value)
+            +Number(document.getElementById("id2").value);
+   document.getElementById("idres").value=suma;
+ }
+function calcular3(){
+if (document.getElementById("id1").value.length == 0){
+	alert ("campo vacio");
+	document.getElementById("id1").focus();
+	return;
+}
+if (isNaN(document.getElementById("id1").value)){
+	alert ("campo no numérico");
+	document.getElementById("id1").focus();
+	return;
+}
+campo=document.getElementById("id2");
+if (campo.value.length == 0){
+	alert ("campo vacio");
+	campo.focus();
+	return;
+}
+if (isNaN(campo.value)){
+	alert ("campo no numérico");
+	campo.focus();
+	return;
+}
+  var suma = Number(document.getElementById("id1").value)+Number(campo.value);
+  document.getElementById("idres").value=suma;
+ }
+ 
+ </script>
+</head>
+<body>
+<form name="form_suma">
+Introduce dos números
+<br>
+<p>Número 1 <input type="text" name="n1" id="id1" size="4"> 
+   Número 2 <input type="text" name="n2" id="id2" size="4"></p>
+<p>Resultado <input type="text" name="res" id="idres" size="4" readonly="readonly"></p>
+<input type="button" value="SUMAR con name" onclick="calcular1()">
+<input type="button" value="SUMAR con id" onclick="calcular2()">
+<input type="button" value="SUMAR validando (con id)" onclick="calcular3()">
+<input type="reset" value="BORRAR"> 
+</form>
+</body></html>

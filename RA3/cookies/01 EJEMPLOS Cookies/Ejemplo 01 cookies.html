@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function getCookie(c_name){
+let miCookie=document.cookie;
+let busca=c_name+"=";
+let esta=miCookie.indexOf(busca);
+if (esta!=-1){
+	ini=miCookie.indexOf("=",esta)+1;
+	fin=miCookie.indexOf(";",esta);
+	if (fin!=-1)
+		valor = miCookie.substr(ini, fin-ini);
+	else
+		valor = miCookie.substr(ini);
+	return valor;
+	}
+else
+	return null;
+}
+function cargaCookie(){
+alert(document.cookie);
+if (getCookie('nombre')==null){
+	document.cookie="nombre=Pepe"  
+	document.cookie="apellido=Pérez"
+	let d = new Date();
+	d.setTime(d.getTime() + (60000)); // a los 60 segundos perdemos la edad
+	let expires = "expires=" + d.toGMTString();
+	// var expires = "expires=" + d;    También vale! 
+	document.cookie = "edad=25; " + expires ;
+	alert(document.cookie);
+	}
+else
+	alert('Bienvenido '+getCookie('nombre'));
+}
+</script>
+</head>
+<body onload="cargaCookie()">
+<h1> PROBANDO COOKIES <h1>
+<input type="button" value="ver nombre" onclick="alert(getCookie('nombre'))">
+<input type="button" value="ver apellido" onclick="alert(getCookie('apellido'))">
+<input type="button" value="ver edad" onclick="alert(getCookie('edad'))">
+<br><br><input type="button" value="ver cookies" onclick="alert(document.cookie)">
+</body>
+</html>
+

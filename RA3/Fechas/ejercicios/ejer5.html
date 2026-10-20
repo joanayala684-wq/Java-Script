@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> PROBANDO JAVASCRIPT EJEMPLO 1</title>
+<script type="text/JavaScript">
+//5. Mostrar la fecha de hoy y qué día será dentro de 100 días.
+let hoy = new Date();
+let diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+let futuro = new Date();
+futuro.setDate(hoy.getDate() + 100);
+let hoyFor = hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear();
+let futuroFor = futuro.getDate() + "/" + (futuro.getMonth() + 1) + "/" + futuro.getFullYear();
+let nombreDiaFuturo = diasSemana[futuro.getDay()];
+alert("Hoy es: " + hoyFor + 
+          "\nDentro de 100 días será: " + futuroFor + 
+          " (" + nombreDiaFuturo + ")");
+</script>
+</head>
+<body>
+PROBANDO JAVASCRIPT EJEMPLO 1
+</body>
+</html>

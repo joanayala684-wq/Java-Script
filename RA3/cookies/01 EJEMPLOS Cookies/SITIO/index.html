@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<script type="text/javascript">
+function getCookie(c_name){
+var miCookie=document.cookie;
+var busca=c_name+"=";
+var esta=miCookie.indexOf(busca);
+if (esta!=-1){
+	ini=miCookie.indexOf("=",esta)+1;
+	fin=miCookie.indexOf(";",esta);
+	if (fin!=-1)
+		valor = miCookie.substr(ini, fin-ini);
+	else
+		valor = miCookie.substr(ini);
+	alert(valor);
+	return valor;
+	}
+else
+	return null;
+}
+function cargaCookie(){
+document.cookie="nom=Ana"  
+document.cookie="apell=Sotoblanco; path=/"
+}
+</script>
+</head>
+<body onload="cargaCookie()">
+<h1> PROBANDO COOKIES PRINCIPAL<h1>
+<input type="button" value="ver nombre" onclick="getCookie('nom')">
+<input type="button" value="ver apellido" onclick="getCookie('apell')">
+<br><br><input type="button" value="ver cookies" onclick="alert(document.cookie)">
+<br><br><a href="otraDentro.html"> Ir a la siguiente página </a>
+<br><br><a href="../otraFuera.html"> Ir a página fuera del sitio </a>
+</body>
+</html>
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function calcular(){
+const campo1=document.getElementById("id1");
+const campo2=document.querySelector("#id2");
+if (campo1.value.length == 0){
+	alert ("campo vacio");
+	campo1.focus();
+	return;
+}
+if (campo2.value.length == 0){
+	alert ("campo vacio");
+	campo2.focus();
+	return;
+}
+let suma = Number(campo1.value)+Number(campo2.value);
+  if (isNaN(suma)){
+	alert("Repasa los números que has metido");
+	return;
+  }
+
+  iva=Number(document.getElementById("iva").value);
+  document.getElementById("res").value=suma+suma*iva/100;
+ }
+ function cambiar(){
+ {
+  let dato=document.getElementById("sel");
+  let span=document.getElementById("elegida");
+  span.innerHTML=dato.options[dato.selectedIndex].text ;
+  span.style.fontSize=dato.value+'px';
+ }
+ }
+ </script>
+</head>
+<body>
+<form name="form_suma">
+Introduce dos n&uacute;meros
+<br>
+<p>N&uacute;mero 1 <input type="text" id="id1" size="4"></p>
+<p>N&uacute;mero 2 <input type="text" id="id2" size="4"></p>
+
+Seleccione un IVA 
+<select name="campoiva" id="iva" onchange="calcular()">
+	<option value="4" selected> 4% </option>
+	<option value="10"> 10% </option>
+	<option value="21"> 21% </option>
+</select>
+<p>Resultado <input type="text" id="res" size="4" readonly="readonly"></p>
+<input type="button" value="SUMAR" onclick="calcular()">
+<p><input type="reset" value="BORRAR"></p>
+</form>
+<hr>
+<form name="otro_form">
+
+Tamaño <select id="sel" onchange="cambiar()">
+<option value="10">Pequeña</option>
+<option value="20">Mediana</option>
+<option value="30">Grande</option>
+<option value="50">Gigante</option>
+
+</select>
+<div id="div1">
+Has elegido...<span id="elegida"></span>
+</div>
+</form>
+</body></html>

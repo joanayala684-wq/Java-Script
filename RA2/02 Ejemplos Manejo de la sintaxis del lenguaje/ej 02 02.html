@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+a=1;  // es global 
+var b=2;  // es global
+console.log (a+b);
+uno();
+console.log (c);
+//console.log (d);
+
+if (true)
+{
+	let a, b, c;
+	a = 30;
+	b = 80;
+	 c= a + b;
+	const PI = 3.14;
+	console.log ('a: '+a);
+	console.log ('PI: '+PI);
+	PI = 3.1416;
+}
+console.log ('a: '+a);
+console.log ('PI: '+PI);
+alert("Cambia var por let y comprueba qué ocurre");
+function uno ()
+{
+c=3;   // es global
+var d=4;  // es local a la función
+console.log (a+b+c+d);
+}
+</script>
+</head>
+<body>
+PROBANDO JAVASCRIPT
+</body>
+</html>

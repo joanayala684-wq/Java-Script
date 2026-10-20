@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript">
+
+
+function saludar(){
+window.setTimeout(function(){document.getElementById("id1").innerHTML="Bienvenidos<br>";},
+								 3000);
+// también se puede utilizar la notación de funciones: 
+
+window.setTimeout (() => { console.log ('Hola caracola...');}, 5000);
+
+// o
+
+window.setTimeout (otra,6000); // pasamos la función para que la ejecute después, no es una llamada otra()
+
+}
+function otra (){
+	console.log ('Temporizadores');
+}
+
+function saludar2(){
+a=window.setInterval(function(){
+						document.getElementById("id1").innerHTML+="Hola<br>";}, 3000);
+ 
+}
+function parar(){
+window.clearInterval(a); 
+}
+</script>
+</head>
+<body>
+
+<input type="button" value="Saludar en 3 segundos (setTimeout)" onclick="saludar()">  <br><br>
+<input type="button" value="Saludar cada 3 segundos(setInterval)" onclick="saludar2()">  <br><br>
+<div id="id1"></div>
+<input type="button" value="Para ya!" onclick="parar()">  <br>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> PROBANDO FECHAS </title>
+<script type="text/JavaScript">
+ function cargarHoy(){
+  let fecha_hoy = new Date();
+  document.getElementById("hoy").value=fecha_hoy.getDate()+'-'+(fecha_hoy.getMonth() + 1)+'-'+fecha_hoy.getFullYear(); 
+  document.getElementById("hoy2").value=fecha_hoy.toLocaleDateString();
+}
+ function convertir(){
+	let fecha_mal = new Date(document.getElementById("fecha").value);
+    alert(fecha_mal);
+    
+    let fecha_caja = document.getElementById("fecha").value.split('/');
+	let fecha = new Date (fecha_caja[2], fecha_caja[1]-1,fecha_caja[0]);
+	alert (fecha);
+ // sumamos 3 meses a la fecha 
+ 
+  fecha.setMonth(fecha.getMonth()+3);
+  document.getElementById("fechaMastres").value= fecha.getDate()+'/'+(fecha.getMonth() + 1)+'/'+fecha.getFullYear(); 
+ }
+ function queSoy(fecha){
+alert ("Mi valor es "+fecha.value+ " y soy un "+ (typeof fecha.value))
+ }
+ 
+ 
+
+
+</script>
+</head>
+<body onload="cargarHoy()">
+PROBANDO JAVASCRIPT PROBANDO FECHAS
+<br><br>
+Hoy es  <input type="text" size=10 id="hoy" readonly> <input type="text" size=10 id="hoy2" readonly><br><br>
+Si tenemos una fecha en forma dd/mm/yyyy en una caja de texto podemos transformar esta cadena en un Date<br> 
+<input type="text" size=10 id="fecha"><br><br>
+<input type="button" value="Convertir en fecha" onclick="convertir()"><br><br>
+Fecha anterior más 3 meses <input type="text" size=10 id="fechaMastres" readonly><br><br>
+<br><br>
+Fecha con type date <input type="date" id="fechaOtra" min="2020-01-01" max="2025-12-31" onchange="queSoy(this)">
+<br><br>
+Fecha con type datetime  <input type="datetime-local" id="fechaHora" onchange="queSoy(this)">
+</body>
+
+</html>

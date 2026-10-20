@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> PROBANDO JAVASCRIPT EJEMPLO 1</title>
+ <script>
+//Pedir al usuario que introduzca su fecha de nacimiento en formato dd/mm/yyyy
+//(recogemos como una única cadena) y mostramos por pantalla el día de la semana en
+//que nació en castellano y su edad actual.
+function procesarFecha() {
+fechaNac = prompt("introduce tu fecha de nacimiento en formato dd/mm/yyyy");
+if (!fechaNac) {
+        alert("No introdujiste ninguna fecha.");
+        return;
+      }
+let partes = fechaNac.split('/');
+if (partes.lengtg () == 3){
+    let dia = parseInt(partes[0]);
+    let mes = parseInt(partes[1]);
+    let año = parseInt(partes[2]);
+    let fechaNacimiento = new Date(anio, mes - 1, dia);
+    let diaTexto = obtenerDiaSemana(fechaNacimiento);
+    let edad = calcularEdad(fechaNacimiento);
+    alert("Naciste un día: " + diaTexto + "Tu edad actual es: " + edad + " años.");
+
+} else {
+        alert("Formato incorrecto. Debe ser dd/mm/yyyy.");
+      }
+    }
+function calcularEdad(fechaNacimiento){
+   let hoy = new Date();
+   let age = hoy.getFullYear() - fechaNacimiento.getFullYear();
+   let mesDiferencia = hoy.getMonth() - fechaNacimiento.getMonth();
+   if (mesDiferencia < 0 || (mesDiferencia === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+        age--;
+      }
+      return age;
+}
+function obtenerDiaSemana(fecha){
+  
+     let dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    return dias[fecha.getDay()];
+}
+procesarFecha();
+   </script>
+</head>
+<body>
+PROBANDO JAVASCRIPT EJEMPLO 1
+</body>
+</html>

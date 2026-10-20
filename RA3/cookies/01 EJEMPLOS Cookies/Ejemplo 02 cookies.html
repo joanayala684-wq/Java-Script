@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+<script type="text/javascript">
+function getCookie(c_name){
+let miCookie=document.cookie;
+let busca=c_name+"=";
+let esta=miCookie.indexOf(busca);
+if (esta!=-1){
+	ini=miCookie.indexOf("=",esta)+1;
+	fin=miCookie.indexOf(";",esta);
+	if (fin!=-1)
+		valor = miCookie.substr(ini, fin-ini);
+	else
+		valor = miCookie.substr(ini);
+	return valor;
+	}
+else
+	return null;
+}
+function setCookie(c_name,c_value,caducidad) {
+    if (caducidad != null){
+        let d = new Date();
+        d.setTime(d.getTime() + (caducidad));
+        let expires = "expires=" + d.toGMTString();
+        document.cookie = c_name + "=" + c_value + ";" + expires ;
+    }
+    else{
+      document.cookie = c_name + "=" + c_value;
+    }
+  alert(document.cookie);
+}
+function checkCookie(){
+let nombre=getCookie("nombre");
+if (nombre!=null)  {
+  alert("Bienvenido " + nombre + " tu estado era "+ getCookie("estado"));
+  }
+else   {
+  nombre=prompt("Teclea tu nombre");
+  if (nombre!=null)    {
+    setCookie("nombre",nombre,30000); // expirará en 30 segundos
+    }
+  let estado=prompt("Como te encuentras?");
+  if (estado!=null)    {
+    setCookie("estado",estado);  
+    }
+  }
+console.log(document.cookie);
+}
+function cambiarEstado(){
+  let estado=prompt("Como te encuentras?");
+  if (estado!=null)    {
+    setCookie("estado",estado);  
+    }
+}
+</script>
+</head>
+<body onload="checkCookie()">
+<h1> PROBANDO COOKIES <h1>
+<input type="button" value="mostrar estado" onclick="alert(getCookie('estado'))">
+<input type="button" value="cambiar estado" onclick="cambiarEstado()">
+<input type="button" value="borrar estado" onclick="document.cookie='estado=; expires=Thu, 01 Jan 1970 00:00:00 GMT;'">
+<br><br><input type="button" value="ver cookies" onclick="alert(document.cookie)">
+</body>
+</html>
+

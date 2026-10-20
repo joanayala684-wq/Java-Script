@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> PROBANDO JAVASCRIPT EJEMPLO 1</title>
+<script type="text/JavaScript">
+// sacar la fecha del sistema
+let fechaHoy = new Date();
+console.log (fechaHoy);
+
+// construir una fecha sabiendo día, mes y año
+let fechaNac = new Date(1999,9,7);
+console.log  (fechaNac); // Thu Oct 07 1999 00:00:00 GMT+0200
+
+let Fecha=new Date (2023,10,27,11,20,25);
+console.log (Fecha.toDateString()) ; // Mon Nov 27 2023
+console.log (Fecha.toTimeString()) ; // 11:20:25 GMT+0100
+console.log  (Fecha.toLocaleDateString());//	27/11/2023
+console.log  (Fecha.toLocaleTimeString());//	11:20:25 	
+
+Fecha=new Date (2023,12,45)
+console.log (Fecha.toLocaleDateString()); //  14/2/2024
+Fecha=new Date (2023,9)
+console.log (Fecha.toLocaleDateString()); //  1/10/2023
+Fecha=new Date (2023,12, 'a')
+console.log (Fecha.toLocaleDateString()); // Invalid Date
+
+Fecha=new Date("2024-10-22");
+console.log (Fecha.toLocaleDateString());  // 22/10/2024
+
+Fecha=new Date("22/10/2024");
+console.log (Fecha.toLocaleDateString());  // Invalid Date
+
+Fecha=new Date("10/22/2024");
+console.log (Fecha.toLocaleDateString());  // 22/10/2024
+
+
+</script>
+</head>
+<body>
+PROBANDO JAVASCRIPT EJEMPLO 1
+</body>
+</html>

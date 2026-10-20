@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formularios de fechas</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .contenedor {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .formulario {
+      background-color: white;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      color: #3498db;
+      font-size: 20px;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-right: 8px;
+      margin-bottom: 10px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .campos-fecha {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .campos-fecha input {
+      width: 90px;
+    }
+
+    .descripcion {
+      color: #777;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+  function fecha_01(){
+    let  fechaSeleccionada =  new Date(document.getElementById("fecha").value);
+
+    if (isNaN(fechaSeleccionada.getTime())){
+  
+      alert("ERROR: Seleccione una fecha");
+      return;
+    }
+    
+    let fechaHoy= new Date();
+
+
+    fechaSeleccionada.setHours(0, 0, 0, 0);
+    fechaHoy.setHours(0, 0, 0, 0);
+
+    let diferenciaMili = fechaSeleccionada.getTime() - fechaHoy.getTime();
+    let msPorDia = 1000 * 60 * 60 * 24;
+    let diasDiferencia = Math.floor(diferenciaMili / msPorDia);
+    
+    if (diasDiferencia > 0) {
+      alert ("Faltan: "+ diasDiferencia +" dias para la fecha seleccionada");
+    
+    } else if (diasDiferencia < 0){
+      alert("Han pasado "+ Math.abs(diasDiferencia) +" dias desde la fecha seleccionada");
+
+    } else {
+      alert("la fecha seleccionada es el dia de hoy. Han pasado 0 dias")
+    }
+  }
+    
+  function fecha_02(){
+   
+    let  dia = document.getElementById("dia").value;
+    let  mes = document.getElementById("mes").value;
+    let  anio = document.getElementById("anio").value;
+
+
+      if (dia == "" || mes == "" || anio == ""){
+        alert("ERROR: Seleccione una fecha valida. Todos los campos deben ser rellenados");
+      return;
+    }
+      let fechaNac = new Date(anio, mes - 1, dia);
+      let fechaHoy = new Date();
+      if ( fechaNac > fechaHoy ){
+        alert("la fecha no puede ser superior a la de hoy");
+        return;
+      }
+
+      fechaNac.setHours(0, 0, 0, 0);
+      fechaHoy.setHours(0, 0, 0, 0);
+      let edad = Math.floor((fechaHoy.getTime() - fechaNac.getTime())/(365.25*24*60*60*1000));
+      
+    
+      alert("Su edad es de " + edad +" anios")
+      }
+  function fecha_03(){  
+      let  mesAnio = document.getElementById("mesAnio").value;
+        let partes = mesAnio.split("/");
+      if (mesAnio == "") { 
+              alert("ERROR: El campo esta vacio");
+              return;
+
+
+      } else if (partes.length != 2){
+          alert("EL formato es incorrecto ");
+          return;
+      }
+      let mes = partes[0]-1;
+      let anio = partes[1];
+      let fechaSeleccionada = new Date(anio, mes);
+      let fechaHoy = new Date();
+      let anios = (fechaHoy.getTime() - fechaSeleccionada.getTime())/(365.25*24*60*60*1000);
+      if (anios < 0) {
+          alert("La fecha seleccionada no puede ser futura");
+          return;
+      }
+      let trienios = Math.floor(anios/3);
+      alert("Usted tiene " + Math.abs(trienios)+" trienios en la empresa");
+
+    }
+    
+  </script>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1>Ejercicios con fechas</h1>
+
+    <!-- Formulario 1 -->
+    <div class="formulario">
+      <h2>1. Fecha</h2>
+
+      <p class="descripcion">
+        Introduce una fecha utilizando el selector.
+      </p>
+
+      <form>
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+
+        <button type="button" onclick="fecha_01()">Días faltan o han pasado</button>
+      </form>
+    </div>
+
+
+    <!-- Formulario 2 -->
+    <div class="formulario">
+      <h2>2. Día, mes y año</h2>
+
+      <p class="descripcion">
+        Introduce la fecha de nacimiento.
+      </p>
+
+      <form>
+        <div class="campos-fecha">
+
+          <div>
+            <label for="dia">Día:</label>
+            <input type="number" id="dia" name="dia" min="1" max="31">
+          </div>
+
+          <div>
+            <label for="mes">Mes:</label>
+            <input type="number" id="mes" name="mes" min="1" max="12">
+          </div>
+
+          <div>
+            <label for="anio">Año:</label>
+            <input type="number" id="anio" name="anio" min="1900" max="2100">
+          </div>
+
+        </div>
+
+        <button type="button" onclick="fecha_02()">Muestra la edad de esta persona</button>
+      </form>
+    </div>
+
+
+    <!-- Formulario 3 -->
+    <div class="formulario">
+      <h2>3. Mes y año</h2>
+
+      <p class="descripcion">
+        Introduce la fecha como una cadena con el formato mm/yyyy.
+      </p>
+
+      <form>
+        <label for="mesAnio">Fecha:</label>
+        <input
+          type="text"
+          id="mesAnio"
+          name="mesAnio"
+          placeholder="mm/yyyy"
+        >
+
+        <button type="button" onclick="fecha_03()">Trienios en la empresa</button>
+      </form>
+    </div>
+   </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        }
+        #contador {
+        font-size: 80px;
+        font-weight: bold;
+        color: #333;
+        }
+        #imagen {
+        display: none; /* Oculta la imagen al inicio */
+        margin-top: 20px;
+        max-width: 400px;
+        border-radius: 10px;
+        }
+    </style>
+  
+</head>
+<body>
+  <h2>Cuenta Atrás</h2>
+  <div id="contador">10</div>
+
+  <!-- Imagen que se mostrará al finalizar -->
+  <img id="imagen" src="https://picsum.photos/400/300" alt="Imagen final">
+    
+     <script>
+        //Mostrar en una página la siguiente cuenta atrás 10, 9, 8... 0 segundo a segundo y al
+//finalizar mostrar una imagen.
+      let numero = 10;
+      let elementoContador = document.getElementById("contador");
+      let elementoImagen = document.getElementById("imagen");
+      
+      let intervalo = setInterval(function(){
+        numero--;
+        elementoContador.innerText = numero;
+
+        if (numero === 0){
+            clearInterval(intervalo);
+            elementoContador.innerText = "tiempo finalizado";
+            elementoImagen.style.display = "inline-block";
+        }
+      }, 1000);
+    </script>
+</body>
+</html>

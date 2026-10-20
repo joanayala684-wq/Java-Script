@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function getCookie(c_name){
+let miCookie=document.cookie;
+let busca=c_name+"=";
+let esta=miCookie.indexOf(busca);
+if (esta!=-1){
+	ini=miCookie.indexOf("=",esta)+1;
+	fin=miCookie.indexOf(";",esta);
+	if (fin!=-1)
+		valor = miCookie.substr(ini, fin-ini);
+	else
+		valor = miCookie.substr(ini);
+	return valor;
+	}
+else
+	return null;
+}
+function setCookie(c_name,c_value,caducidad) {
+    if (caducidad != null){
+        let d = new Date();
+        d.setTime(d.getTime() + (caducidad));
+        let expires = "expires=" + d.toGMTString();
+        document.cookie = c_name + "=" + c_value + ";" + expires ;
+    }
+    else{
+      document.cookie = c_name + "=" + c_value;
+    }
+  alert(document.cookie);
+}
+function cargaCookie(){
+let apodo = getCookie("apodo")
+if ( apodo ==null){
+    let nombre= prompt("es tu primera vez aqui. Introduce tu nombre");
+    if (nombre != null && nombre != "") {
+            setCookie("nombre", nombre);
+        }
+    let apodo = prompt("introduce un apodo");
+     if (apodo != null && apodo != "") {
+            setCookie("apodo", apodo);
+        }
+    let estado = prompt("introduce tu estado de animo ");
+      if (estado != null && estado != "") {
+            setCookie("estado", estado);
+        } 
+    let fechaSet = new Date();
+    setCookie("ultimaVisita", fechaSet);
+    setCookie("visitasJS", 1);
+    setCookie("visitasHTML", 1);
+    alert("Datos guardados correctamente");
+    }
+    else {
+        alert("hola de nuevo " + apodo + "!");
+        let contador = parseFInt(getCookie("visitaJS"));
+        contador++;
+         setCookie("visitasJS", contador);
+         setCookie("visitasHTML", contador);
+
+         let ultimaVisita = parseInt(getCookie("ultimaVisita"));
+         let ahora = new Date().getDate();
+         let limiteTiempo = 6000;
+
+         if (ultimaVisita && (ahora - ultimaVisita > limiteTiempo)){
+            let estadoActual = getCookie("estado");
+            let respuesta = confirm("Hace mas de un minuto que no entrabas ");
+            if (!respuesta){
+               nuevoEstado =  prompt("introduce tu nuevo estado");
+            if (nuevoEstado != null && nuevoEstado != "" ){
+                setCookie("estado", nuevoEstado);
+            }
+            else {
+                alert("introduce un estado valido");
+            }
+        
+        }
+         }
+    }
+    
+	
+
+}
+</script>
+</head>
+<body onload="cargaCookie()">
+<h1> PROBANDO COOKIES <h1>
+<h4>Numero de veces que has entrado</h4>
+
+<input type="button" value="ver nombre" onclick="alert(getCookie('nombre'))">
+<input type="button" value="ver apellido" onclick="alert(getCookie('apellido'))">
+<input type="button" value="ver edad" onclick="alert(getCookie('edad'))">
+<br><br><input type="button" value="ver cookies" onclick="alert(document.cookie)">
+</body>
+</html>

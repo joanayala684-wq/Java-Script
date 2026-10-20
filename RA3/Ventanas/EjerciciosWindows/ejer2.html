@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    
+    <input type="button" value="Me aburro" onclick="abre_mia()">  <br><br>
+    
+    
+    <input type="button" value="Stop" onclick="cerrar()">  <br><br>
+
+    <div id="id1"></div>
+    <div id = "img"></div>
+    
+   <script>
+       /*Hacer un archivo html que contenga un botón con el texto “ME ABURRO” y otro con el
+texto “STOP”. Al pulsar el primer botón se abrirá una ventana con el texto “Yo sí que
+me aburro” y una imagen. La ventana aparece en la esquina superior izquierda de la
+pantalla y se irá moviendo cada segundo a razón de 20 pixeles hacia abajo y a la
+derecha. Al pulsar el botón de STOP la ventana deja de moverse.
+*/  let mia;
+    let intervalo;
+ 
+    function abre_mia(){
+    clearInterval(intervalo);
+    mia=window.open('','ventanaAburrimiento','width=300,height=300,top=0,left=0' );
+    mia.document.write(`<p>Yo si que me aburro</p> <img id="imagen" src="https://picsum.photos/400/300" alt="Imagen final">`);
+    interval();
+    }
+    function interval(){
+      intervalo = setInterval(function(){
+        if(mia && !mia.closed){
+             mia.moveBy(20,20); 
+             }
+      }, 1000);
+    }
+    function cerrar(){
+       clearInterval(intervalo);
+    }
+    </script>
+</body>
+</html>

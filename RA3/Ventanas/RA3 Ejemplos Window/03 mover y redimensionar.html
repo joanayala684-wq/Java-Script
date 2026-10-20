@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript">
+let mia;
+function abre_mia(){
+mia=window.open('','miamia','width=200,height=200,top=100,left=100' );
+mia.document.write("<p>Esta es mi ventana</p>");
+mia.document.write('<input type="button" value="Cerrar" onClick="window.close()">');
+mia.document.close();
+}
+
+function cerrar_mia(){
+mia.close();
+}
+function agrandar_mia(){
+mia.resizeBy(50,0);
+}
+function mia_600(){
+mia.resizeTo(600,600);
+}
+function mia_mueve1(){
+mia.moveBy(25,25);   
+}
+function mia_mueve2(){
+alert("muevo");
+mia.moveTo(200,100);
+}
+ 
+</script>
+</head>
+<body>
+<input type="button" value="Abrir una mia" onclick="abre_mia()">  <br>
+<input type="button" value="Cerrar mia" onclick="cerrar_mia()">  <br>
+<input type="button" value="Mia mas grande" onclick="agrandar_mia()">  <br>
+<input type="button" value="Mia a 600" onclick="mia_600()">  <br>
+<input type="button" value="Mueve Mia un paso" onclick="mia_mueve1()">  <br>
+<input type="button" value="Mueve Mia abajo" onclick="mia_mueve2()">  <br>
+</body>
+</html>

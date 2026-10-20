@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="main.css">
+
+<script>
+let mia;
+function abre_google(){
+let nueva1=window.open("http://www.google.com","_blank",'width=300,height=200,top=300,left=500');
+}
+function abre_vacia(){
+let nueva2=window.open("","_blank");
+}
+function abre_google_self(){
+if (window.confirm("Seguro?")){
+	let nueva3=window.open("http://www.google.com",'_self');
+	}
+}
+function abre_mia(){
+mia=window.open('','tuya','width=500,height=500,top=300,left=500' ); 
+ 
+            mia.document.bgColor='#00ccff';  
+ mia.document.write("<p>Esta es mi ventana</p>");
+mia.document.write('<input type="button" value="Cierra" onClick="window.close()">');
+mia.document.close();  // para que al abrir de nuevo limpie el documento
+ }
+function abre_otra_mia(){
+let otra=window.open('','otra','width=300,height=200,top=100,left=100' );  
+otra.document.write("<p>Esta es mi otra ventana</p>");
+}
+function abre_siguiente_ejemplo(){
+let siguiente=window.open('02 alert confirm prompt.html','siguiente','width=300,height=200,top=100,left=100' );
+}
+function cierra_mia(){
+mia.close();
+}
+
+</script>
+</head>
+
+<body>
+<h3>TRABAJANDO CON VENTANAS</h3>
+<input type="button" value="Abrir Google" onclick="abre_google()"><br>
+<span id="span1">
+nueva1=window.open("http://www.google.com","_blank",'width=300,height=200,top=300,left=500');
+</span><br> 
+<input type="button" value="Abrir Vacia" onclick="abre_vacia()"> <br> 
+<span id="span2">
+nueva2=window.open("","_blank");
+</span><br> 
+<input type="button" value="Abrir Google en esta misma" onclick="abre_google_self()"> <br>
+<span id="span3">
+nueva3=window.open("http://www.google.com",'_self');
+</span><br> 
+<input type="button" value="Abrir una mia" onclick="abre_mia()">  <br>
+<span id="span4">
+mia=window.open('','tuya','width=500,height=500,top=300,left=500' );  <br> 
+mia.document.write(" Esta es mi ventana ");
+</span><br> 
+<input type="button" value="Abrir otra mia" onclick="abre_otra_mia()">  <br>
+<span id="span5">
+otra=window.open('','otra','width=300,height=200,top=100,left=100' ); <br>
+otra.document.write(" Esta es mi otra ventana "); 
+</span><br> 
+<input type="button" value="Abrir Ejemplo 02" onclick="abre_siguiente_ejemplo()">  <br>
+<span id="span6">
+siguiente=window.open('02 alert confirm prompt.html','siguiente','width=300,height=200,top=100,left=100' );  
+</span><br> 
+<input type="button" value="Cierra mia" onclick="cierra_mia()">  <br>
+<a href="http://elpais.es" target="otra"> el pais </a> <br>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function mostrarnivel()
+{
+// Utilizando getElementsByName
+var elementos=document.getElementsByName("nivel");
+for (i=0;i<elementos.length;i++)
+	if (elementos[i].checked){
+		document.getElementById("div1").innerHTML=
+ 			"<br>Nivel <br>"+elementos[i].value;
+		break;	
+		}
+if (i==elementos.length)
+	alert("No ha seleccionado nada");
+ 
+}
+function inicializar(){
+var elementos=document.getElementsByName("nivel");
+for (i=0;i<elementos.length;i++)
+	elementos[i].checked=false;
+document.getElementById("div1").innerHTML="";
+}
+</script>
+</head>
+<body>
+<form name="miformulario">
+Nivel de estudios
+<br><br>
+<input type="radio" name="nivel" value="1"> Primaria  
+<input type="radio" name="nivel" value="2"> Secundaria 
+<input type="radio" name="nivel" value="3"> Ciclos Formativos 
+<br><br><br>
+<input type="button" value="Mostrar Nivel" onclick="mostrarnivel()">
+<input type="button" value="Inicializar" onclick="inicializar()">
+</form>
+<div id="div1">
+</div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulario simple</title>
+<style>
+body {
+font-family: sans-serif;
+margin: 2rem;
+background-color: #f9f9f9;
+}
+label {
+display: block;
+margin-top: 1rem;
+}
+input {
+padding: 0.5rem;
+margin-top: 0.25rem;
+border-radius: 4px;
+border: 1px solid #ccc;
+}
+button {
+margin-top: 1rem;
+padding: 0.5rem 1rem;
+border: none;
+background-color: #007bff;
+color: #fff;
+border-radius: 4px;
+cursor: pointer;
+}
+button:hover {
+background-color: #0056b3;
+}
+#mensajes {
+margin-top: 1.5rem;
+padding: 1rem;
+background: #fff;
+border: 1px solid #ccc;
+border-radius: 4px;
+min-height: 100px;
+}
+</style>
+</head>
+<script>
+    function getCookie(c_name) {
+    let miCookie = document.cookie;
+    let busca = c_name + "=";
+    let esta = miCookie.indexOf(busca);
+    if (esta != -1) {
+        ini = miCookie.indexOf("=", esta) + 1;
+        fin = miCookie.indexOf(";", esta);
+        if (fin != -1)
+            valor = miCookie.substr(ini, fin - ini);
+        else
+            valor = miCookie.substr(ini);
+        return valor;
+    }
+    else
+        return null;
+}
+
+function setCookie(c_name, c_value, caducidad) {
+    if (caducidad != null) {
+        let d = new Date();
+        d.setTime(d.getTime() + (caducidad));
+        let expires = "expires=" + d.toGMTString();
+        document.cookie = c_name + "=" + c_value + ";" + expires;
+    }
+    else {
+        document.cookie = c_name + "=" + c_value;
+    }
+}
+function preguntar(){
+   let ventana = getCookie("ventanas");
+    if (ventana ==  null ){
+        var a = confirm('¿Confirma que quiere que le salgan ventanas?');
+            if (a) {
+            setCookie("vetana", "yes", 86400000);
+            }else{
+                setCookie("vetana", "no");
+            }
+
+    }
+function validar(){
+    const mes = document.getElementById("mes").value.trim();
+    const año = document.getElementById("año").value.trim();
+    let errores = "";
+    errores += validarCampos("mes", "mes");
+    errores += validarCampos("año", "año");
+    if ( errores == ""){
+
+    if ( mes < 1 || mes > 12 ){
+        errores += "<li>El mes debe estar entre 1 y 12.</li>";}
+    let systemYear = new date().getFullYear();
+    if ( año < systemYear){
+        errores += "<li>El año debe ser igual o mayor al año del sistema.</li>";
+    }
+    }
+    
+    const contenedorErrores = document.getElementById("errores");
+
+    if (errores !== "") {
+        contenedorErrores.innerHTML = "<ul>" + errores + "</ul>";
+        return false; // Formulario inválido
+    } else {
+        contenedorErrores.innerHTML = ""; // Limpiar errores si todo está bien
+        return true;  // Formulario válido
+    }
+    return "";
+    }
+function validarCampos(id, nombre){
+    const valor = document.getElementById(id).value().trim();
+    let Num = Math.floor(valor);
+    
+    let errores = "";
+    if (valor == null || valor == ""){
+        return `<li>El ${nombre} no puede estar vacio</li>`;
+    }
+    if ( isNaN(valor) || Num != valor){
+        return `<li>El ${nombre} debe ser un numero entero.</li>`;
+    }
+} 
+function ir(){
+     }
+function jugar(){
+    }
+function comprobar(){
+    }
+
+</script>
+<body onload="preguntar()">
+<label>Mes:</label>
+<input type="text" id="mes" size="10" placeholder="Introduce mes">
+<label>Año:</label>
+<input type="text" id="año" size="10" placeholder="Introduce año">
+<br><br>
+<button onclick="validar()">Validar datos</button>  
+<button onclick="ir()">Plantillas Calendarios</button> 
+<div id="juego" style="display: none;">
+	<button onclick="jugar()">Adivina el día</button> <input type="text" id="numero" size="4" onchange="comprobar()">
+	<h4>Premio <span id="premio">300</span></h4>
+</div>
+<div id="errores"></div>
+</body>
+</html>
